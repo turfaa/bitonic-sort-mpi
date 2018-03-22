@@ -11,7 +11,7 @@ void bitonic_sort(int* arr, int n, int rank_from, int n_process, int order,
                    n/2,
                    rank_from,
                    n_process/2,
-                   order,
+                   SORT_ORDER_ASC,
                    world_rank,
                    world_size);
 
@@ -44,7 +44,7 @@ void bitonic_sort(int* arr, int n, int rank_from, int n_process, int order,
 									 n/2,
 									 rank_from + n_process/2,
 									 (n_process+1)/2,
-									 1-order,
+									 SORT_ORDER_DESC,
                    world_rank,
                    world_size);
 
@@ -76,8 +76,21 @@ void bitonic_sort(int* arr, int n, int rank_from, int n_process, int order,
 		}
 	}
 	else {
-		bitonic_sort(arr, n/2, rank_from, 1, order, world_rank, world_size);
-		bitonic_sort(arr + n/2, n/2, rank_from, 1, 1-order, world_rank, world_size);
+		bitonic_sort(arr,
+                 n/2,
+                 rank_from,
+                 1,
+                 SORT_ORDER_ASC,
+                 world_rank,
+                 world_size);
+
+		bitonic_sort(arr + n/2,
+                 n/2,
+                 rank_from,
+                 1,
+                 SORT_ORDER_DESC,
+                 world_rank,
+                 world_size);
 	}
 	_bitonic_merge(arr, n, rank_from, n_process, order, world_rank, world_size);
 }
