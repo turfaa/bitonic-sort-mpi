@@ -61,10 +61,10 @@ int main(int argc, char** argv) {
 									 + (endwtime.tv_sec - startwtime.tv_sec) * 1000000;
 
 		if (test(arr, n_original, SORT_ORDER_ASC)) {
-			printf("berhasil, waktu %d ms\n", seq_time);
+			printf("berhasil, waktu %d microseconds\n", seq_time);
 		}
 		else {
-			printf("gagal, waktu %d ms\n", seq_time);
+			printf("gagal, waktu %d microseconds\n", seq_time);
 		}
 	}
 

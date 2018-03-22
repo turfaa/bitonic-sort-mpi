@@ -19,4 +19,4 @@ clean:
 				rm -f bitonic_sort $(OBJECTS)
 
 run:
-	mpirun -n 8 ./bitonic_sort 1000
+	mpirun -np 8 ./bitonic_sort 1000
